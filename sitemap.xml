@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
      <loc>https://maxbachmann.github.io/rapidfuzz/</loc>
-     <lastmod>2020-06-03</lastmod>
+     <lastmod>2020-08-14</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://maxbachmann.github.io/rapidfuzz/installation/</loc>
-     <lastmod>2020-06-03</lastmod>
+     <lastmod>2020-08-14</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://maxbachmann.github.io/rapidfuzz/usage/fuzz/</loc>
-     <lastmod>2020-06-03</lastmod>
+     <lastmod>2020-08-14</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://maxbachmann.github.io/rapidfuzz/usage/process/</loc>
-     <lastmod>2020-06-03</lastmod>
+     <lastmod>2020-08-14</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://maxbachmann.github.io/rapidfuzz/benchmarks/</loc>
-     <lastmod>2020-06-03</lastmod>
+     <lastmod>2020-08-14</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://maxbachmann.github.io/rapidfuzz/contributing/</loc>
-     <lastmod>2020-06-03</lastmod>
+     <lastmod>2020-08-14</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://maxbachmann.github.io/rapidfuzz/license/</loc>
-     <lastmod>2020-06-03</lastmod>
+     <lastmod>2020-08-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
