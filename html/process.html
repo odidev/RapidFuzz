@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>process module &mdash; RapidFuzz 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="utils module" href="utils.html" />
+    <link rel="prev" title="string_metric module" href="string_metric.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> RapidFuzz
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Installation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Usage:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="fuzz.html">fuzz module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="string_metric.html">string_metric module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">process module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#extract">extract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extract-iter">extract_iter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extractone">extractOne</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">utils module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contributing:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">License:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RapidFuzz</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>process module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/process.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="process-module">
+<h1>process module<a class="headerlink" href="#process-module" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="extract">
+<h2>extract<a class="headerlink" href="#extract" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="rapidfuzz.process.extract">
+<code class="sig-prename descclassname">rapidfuzz.process.</code><code class="sig-name descname">extract</code><span class="sig-paren">(</span><em class="sig-param">query</em>, <em class="sig-param">choices</em>, <em class="sig-param">scorer=&lt;built-in function WRatio&gt;</em>, <em class="sig-param">processor=&lt;built-in function default_process&gt;</em>, <em class="sig-param">limit=5</em>, <em class="sig-param">score_cutoff=0</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.process.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the best matches in a list of choices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – string we want to find</p></li>
+<li><p><strong>choices</strong> (<em>Iterable</em>) – list of all strings the query should be compared with or dict with a mapping
+{&lt;result&gt;: &lt;string to compare&gt;}</p></li>
+<li><p><strong>scorer</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Optional callable that is used to calculate the matching score between
+the query and each choice. fuzz.WRatio is used by default</p></li>
+<li><p><strong>processor</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Optional callable that reformats the strings.
+utils.default_process is used by default, which lowercases the strings and trims whitespace</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – maximum amount of results to return</p></li>
+<li><p><strong>score_cutoff</strong> (<em>float</em><em>, </em><em>optional</em>) – Optional argument for a score threshold as a float between 0 and 100.
+Matches with a lower score than this number will be ignored. Default is 0,
+which deactivates this behaviour.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a list of all matches that have a <cite>score &gt;= score_cutoff</cite>.
+The list will be of either <cite>(&lt;choice&gt;, &lt;ratio&gt;, &lt;index of choice&gt;)</cite>
+when <cite>choices</cite> is a list of strings or <cite>(&lt;choice&gt;, &lt;ratio&gt;, &lt;key of choice&gt;)</cite>
+when <cite>choices</cite> is a mapping</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[Tuple[str, float, Any]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="extract-iter">
+<h2>extract_iter<a class="headerlink" href="#extract-iter" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="rapidfuzz.process.extract_iter">
+<code class="sig-prename descclassname">rapidfuzz.process.</code><code class="sig-name descname">extract_iter</code><span class="sig-paren">(</span><em class="sig-param">module</em>, <em class="sig-param">/</em>, <em class="sig-param">query</em>, <em class="sig-param">choices</em>, <em class="sig-param">scorer='fuzz.WRatio'</em>, <em class="sig-param">processor='utils.default_process'</em>, <em class="sig-param">score_cutoff=0</em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.process.extract_iter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the best match in a list of choices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – string we want to find</p></li>
+<li><p><strong>choices</strong> (<em>Iterable</em>) – list of all strings the query should be compared with or dict with a mapping
+{&lt;result&gt;: &lt;string to compare&gt;}</p></li>
+<li><p><strong>scorer</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Optional callable that is used to calculate the matching score between
+the query and each choice. fuzz.WRatio is used by default</p></li>
+<li><p><strong>processor</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Optional callable that reformats the strings.
+utils.default_process is used by default, which lowercases the strings and trims whitespace</p></li>
+<li><p><strong>score_cutoff</strong> (<em>float</em><em>, </em><em>optional</em>) – Optional argument for a score threshold as a float between 0 and 100.
+Matches with a lower score than this number will be ignored. Default is 0,
+which deactivates this behaviour.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>Tuple[str, float, Any]</em> – Yields similarity between the query and each choice in form of a tuple.
+The Tuple will be in the form <cite>(&lt;choice&gt;, &lt;ratio&gt;, &lt;index of choice&gt;)</cite>
+when <cite>choices</cite> is a list of strings or <cite>(&lt;choice&gt;, &lt;ratio&gt;, &lt;key of choice&gt;)</cite>
+when <cite>choices</cite> is a mapping.
+Matches with a similarity, that is smaller than score_cutoff are skipped.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="extractone">
+<h2>extractOne<a class="headerlink" href="#extractone" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="rapidfuzz.process.extractOne">
+<code class="sig-prename descclassname">rapidfuzz.process.</code><code class="sig-name descname">extractOne</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em>, <em class="sig-param"><span class="n">choices</span></em>, <em class="sig-param"><span class="n">scorer</span><span class="o">=</span><span class="default_value">'fuzz.WRatio'</span></em>, <em class="sig-param"><span class="n">processor</span><span class="o">=</span><span class="default_value">'utils.default_process'</span></em>, <em class="sig-param"><span class="n">score_cutoff</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.process.extractOne" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the best match in a list of choices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – string we want to find</p></li>
+<li><p><strong>choices</strong> (<em>Iterable</em>) – list of all strings the query should be compared with or dict with a mapping
+{&lt;result&gt;: &lt;string to compare&gt;}</p></li>
+<li><p><strong>scorer</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Optional callable that is used to calculate the matching score between
+the query and each choice. fuzz.WRatio is used by default</p></li>
+<li><p><strong>processor</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Optional callable that reformats the strings.
+utils.default_process is used by default, which lowercases the strings and trims whitespace</p></li>
+<li><p><strong>score_cutoff</strong> (<em>float</em><em>, </em><em>optional</em>) – Optional argument for a score threshold as a float between 0 and 100.
+Matches with a lower score than this number will be ignored. Default is 0,
+which deactivates this behaviour.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the best match the best match
+in form of a tuple or None when there is no match with a score &gt;= score_cutoff.
+The Tuple will be in the form <cite>(&lt;choice&gt;, &lt;ratio&gt;, &lt;index of choice&gt;)</cite>
+when <cite>choices</cite> is a list of strings or <cite>(&lt;choice&gt;, &lt;ratio&gt;, &lt;key of choice&gt;)</cite>
+when <cite>choices</cite> is a mapping.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[None, Tuple[str, float, Any]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="utils.html" class="btn btn-neutral float-right" title="utils module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="string_metric.html" class="btn btn-neutral float-left" title="string_metric module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Max Bachmann.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
