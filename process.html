@@ -32,7 +32,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -181,7 +180,7 @@
 <h2>extract<a class="headerlink" href="#extract" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="rapidfuzz.process.extract">
-<code class="sig-prename descclassname">rapidfuzz.process.</code><code class="sig-name descname">extract</code><span class="sig-paren">(</span><em class="sig-param">query</em>, <em class="sig-param">choices</em>, <em class="sig-param">scorer=&lt;built-in function WRatio&gt;</em>, <em class="sig-param">processor=&lt;built-in function default_process&gt;</em>, <em class="sig-param">limit=5</em>, <em class="sig-param">score_cutoff=0</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.process.extract" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">rapidfuzz.process.</span></code><code class="sig-name descname"><span class="pre">extract</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">query</span></em>, <em class="sig-param"><span class="pre">choices</span></em>, <em class="sig-param"><span class="pre">scorer=&lt;built-in</span> <span class="pre">function</span> <span class="pre">WRatio&gt;</span></em>, <em class="sig-param"><span class="pre">processor=&lt;built-in</span> <span class="pre">function</span> <span class="pre">default_process&gt;</span></em>, <em class="sig-param"><span class="pre">limit=5</span></em>, <em class="sig-param"><span class="pre">score_cutoff=0</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.process.extract" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the best matches in a list of choices</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -216,7 +215,7 @@ when <cite>choices</cite> is a mapping</p>
 <h2>extract_iter<a class="headerlink" href="#extract-iter" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="rapidfuzz.process.extract_iter">
-<code class="sig-prename descclassname">rapidfuzz.process.</code><code class="sig-name descname">extract_iter</code><span class="sig-paren">(</span><em class="sig-param">module</em>, <em class="sig-param">/</em>, <em class="sig-param">query</em>, <em class="sig-param">choices</em>, <em class="sig-param">scorer='fuzz.WRatio'</em>, <em class="sig-param">processor='utils.default_process'</em>, <em class="sig-param">score_cutoff=0</em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.process.extract_iter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">rapidfuzz.process.</span></code><code class="sig-name descname"><span class="pre">extract_iter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">module</span></em>, <em class="sig-param"><span class="pre">/</span></em>, <em class="sig-param"><span class="pre">query</span></em>, <em class="sig-param"><span class="pre">choices</span></em>, <em class="sig-param"><span class="pre">scorer='fuzz.WRatio'</span></em>, <em class="sig-param"><span class="pre">processor='utils.default_process'</span></em>, <em class="sig-param"><span class="pre">score_cutoff=0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.process.extract_iter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the best match in a list of choices</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -248,7 +247,7 @@ Matches with a similarity, that is smaller than score_cutoff are skipped.</p>
 <h2>extractOne<a class="headerlink" href="#extractone" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="rapidfuzz.process.extractOne">
-<code class="sig-prename descclassname">rapidfuzz.process.</code><code class="sig-name descname">extractOne</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em>, <em class="sig-param"><span class="n">choices</span></em>, <em class="sig-param"><span class="n">scorer</span><span class="o">=</span><span class="default_value">'fuzz.WRatio'</span></em>, <em class="sig-param"><span class="n">processor</span><span class="o">=</span><span class="default_value">'utils.default_process'</span></em>, <em class="sig-param"><span class="n">score_cutoff</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.process.extractOne" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">rapidfuzz.process.</span></code><code class="sig-name descname"><span class="pre">extractOne</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scorer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fuzz.WRatio'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utils.default_process'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.process.extractOne" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the best match in a list of choices</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
