@@ -233,7 +233,11 @@ which performs the calculation in parallel aswell (64 characters at a time).
 Myers algorithm is described in <a class="footnote-reference brackets" href="#id9" id="id3">3</a></p></li>
 </ul>
 </dd>
-<dt>Insertion = 1, Deletion = 1, Substitution = 2:</dt><dd><ul class="simple">
+<dt>Insertion = 1, Deletion = 1, Substitution &gt;= Insertion + Deletion:</dt><dd><p>when <code class="docutils literal notranslate"><span class="pre">Substitution</span> <span class="pre">&gt;=</span> <span class="pre">Insertion</span> <span class="pre">+</span> <span class="pre">Deletion</span></code> set
+<code class="docutils literal notranslate"><span class="pre">Substitution</span> <span class="pre">=</span> <span class="pre">Insertion</span> <span class="pre">+</span> <span class="pre">Deletion</span></code>
+since every Substitution can be performed as Insertion + Deletion
+so in this case treat Substitution as 2</p>
+<ul class="simple">
 <li><p>if max is 0 the similarity can be calculated using a direct comparision,
 since no difference between the strings is allowed.  The time complexity of
 this algorithm is <code class="docutils literal notranslate"><span class="pre">O(N)</span></code>.</p></li>
