@@ -369,28 +369,21 @@ ways:</p>
 \[ratio = 100 \cdot \frac{distance(s1, s2)}{len(s1) + len(s2)}\]</div>
 </dd>
 <dt>Other weights:</dt><dd><div class="math notranslate nohighlight">
- $$
- dist_{max} = \left.
- \begin{cases}
-   min(len(s1), len(s2)) \cdot sub,       &amp; sub \leq ins + del \\
-   len(s1) \cdot del + len(s2) \cdot ins, &amp; \text{otherwise}
- \end{cases}
- $$</div><div class="math notranslate nohighlight">
-\[
-  a = \left\{\begin{array}{&#64;{}l&#64;{\quad}l}
-    x &amp; \mbox{if $y=1$} \\[\jot]
-    z &amp; \mbox{if $b=2$}
-  \end{array}\right.
-\]</div><div class="math notranslate nohighlight">
 \begin{align*}
   dist_{max} = \begin{cases}
-    dist_{max} + (len(s1) - len(s2)) \cdot del, &amp; len(s1) &gt; len(s2) \\
-    dist_{max} + (len(s2) - len(s1)) \cdot ins, &amp; len(s1) &lt; len(s2) \\
-    dist_{max},                                 &amp; len(s1) = len(s2)
+   min(len(s1), len(s2)) \cdot sub,       &amp; \text{if } sub \leq ins + del \\
+   len(s1) \cdot del + len(s2) \cdot ins, &amp; \text{otherwise}
   \end{cases}
 \end{align*}</div><div class="math notranslate nohighlight">
-\[ratio = 100 \cdot \frac{distance(s1, s2)}{dist_{max}}\]</div>
-</dd>
+\begin{align*}
+  dist_{max} &amp;= \begin{cases}
+    dist_{max} + (len(s1) - len(s2)) \cdot del, &amp; \text{if } len(s1) &gt; len(s2) \\
+    dist_{max} + (len(s2) - len(s1)) \cdot ins, &amp; \text{if } len(s1) &lt; len(s2) \\
+    dist_{max},                                 &amp; \text{if } len(s1) = len(s2)
+  \end{cases}
+
+  ratio &amp;= 100 \cdot \frac{distance(s1, s2)}{dist_{max}}
+\end{align*}</div></dd>
 </dl>
 <p class="rubric">Examples</p>
 <p>Find the normalized Levenshtein distance between two strings:</p>
