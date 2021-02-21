@@ -16,7 +16,7 @@ jobs:
       matrix:
         os: [ubuntu-18.04]
     env:
-      CIBW_SKIP: cp27-win* pp27-win* cp36* cp37* cp38*
+      CIBW_BUILD: cp39-manylinux_x86_64
       CIBW_BUILD_VERBOSITY: 3
 
     steps:
