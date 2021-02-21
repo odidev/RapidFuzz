@@ -180,7 +180,7 @@
 <h2>extract<a class="headerlink" href="#extract" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="rapidfuzz.process.extract">
-<code class="sig-prename descclassname"><span class="pre">rapidfuzz.process.</span></code><code class="sig-name descname"><span class="pre">extract</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">query</span></em>, <em class="sig-param"><span class="pre">choices</span></em>, <em class="sig-param"><span class="pre">scorer=&lt;built-in</span> <span class="pre">function</span> <span class="pre">WRatio&gt;</span></em>, <em class="sig-param"><span class="pre">processor=&lt;built-in</span> <span class="pre">function</span> <span class="pre">default_process&gt;</span></em>, <em class="sig-param"><span class="pre">limit=5</span></em>, <em class="sig-param"><span class="pre">score_cutoff=0</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.process.extract" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">rapidfuzz.process.</span></code><code class="sig-name descname"><span class="pre">extract</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">query</span></em>, <em class="sig-param"><span class="pre">choices</span></em>, <em class="sig-param"><span class="pre">scorer=&lt;cyfunction</span> <span class="pre">WRatio&gt;</span></em>, <em class="sig-param"><span class="pre">processor=&lt;cyfunction</span> <span class="pre">default_process&gt;</span></em>, <em class="sig-param"><span class="pre">limit=5</span></em>, <em class="sig-param"><span class="pre">score_cutoff=0.0</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.process.extract" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the best matches in a list of choices</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -196,6 +196,8 @@ utils.default_process is used by default, which lowercases the strings and trims
 <li><p><strong>score_cutoff</strong> (<em>float</em><em>, </em><em>optional</em>) – Optional argument for a score threshold as a float between 0 and 100.
 Matches with a lower score than this number will be ignored. Default is 0,
 which deactivates this behaviour.</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em><em>, </em><em>optional</em>) – any other named parameters are passed to the scorer. This can be used to pass
+e.g. weights to string_metric.levenshtein</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -215,7 +217,7 @@ when <cite>choices</cite> is a mapping</p>
 <h2>extract_iter<a class="headerlink" href="#extract-iter" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="rapidfuzz.process.extract_iter">
-<code class="sig-prename descclassname"><span class="pre">rapidfuzz.process.</span></code><code class="sig-name descname"><span class="pre">extract_iter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">module</span></em>, <em class="sig-param"><span class="pre">/</span></em>, <em class="sig-param"><span class="pre">query</span></em>, <em class="sig-param"><span class="pre">choices</span></em>, <em class="sig-param"><span class="pre">scorer='fuzz.WRatio'</span></em>, <em class="sig-param"><span class="pre">processor='utils.default_process'</span></em>, <em class="sig-param"><span class="pre">score_cutoff=0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.process.extract_iter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">rapidfuzz.process.</span></code><code class="sig-name descname"><span class="pre">extract_iter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">query</span></em>, <em class="sig-param"><span class="pre">choices</span></em>, <em class="sig-param"><span class="pre">scorer=&lt;cyfunction</span> <span class="pre">WRatio&gt;</span></em>, <em class="sig-param"><span class="pre">processor=&lt;cyfunction</span> <span class="pre">default_process&gt;</span></em>, <em class="sig-param"><span class="pre">score_cutoff=0.0</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.process.extract_iter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the best match in a list of choices</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -230,6 +232,8 @@ utils.default_process is used by default, which lowercases the strings and trims
 <li><p><strong>score_cutoff</strong> (<em>float</em><em>, </em><em>optional</em>) – Optional argument for a score threshold as a float between 0 and 100.
 Matches with a lower score than this number will be ignored. Default is 0,
 which deactivates this behaviour.</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em><em>, </em><em>optional</em>) – any other named parameters are passed to the scorer. This can be used to pass
+e.g. weights to string_metric.levenshtein</p></li>
 </ul>
 </dd>
 <dt class="field-even">Yields</dt>
@@ -247,7 +251,7 @@ Matches with a similarity, that is smaller than score_cutoff are skipped.</p>
 <h2>extractOne<a class="headerlink" href="#extractone" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="rapidfuzz.process.extractOne">
-<code class="sig-prename descclassname"><span class="pre">rapidfuzz.process.</span></code><code class="sig-name descname"><span class="pre">extractOne</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scorer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fuzz.WRatio'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utils.default_process'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.process.extractOne" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">rapidfuzz.process.</span></code><code class="sig-name descname"><span class="pre">extractOne</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">query</span></em>, <em class="sig-param"><span class="pre">choices</span></em>, <em class="sig-param"><span class="pre">scorer=&lt;cyfunction</span> <span class="pre">WRatio&gt;</span></em>, <em class="sig-param"><span class="pre">processor=&lt;cyfunction</span> <span class="pre">default_process&gt;</span></em>, <em class="sig-param"><span class="pre">score_cutoff=0.0</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.process.extractOne" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the best match in a list of choices</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -262,6 +266,8 @@ utils.default_process is used by default, which lowercases the strings and trims
 <li><p><strong>score_cutoff</strong> (<em>float</em><em>, </em><em>optional</em>) – Optional argument for a score threshold as a float between 0 and 100.
 Matches with a lower score than this number will be ignored. Default is 0,
 which deactivates this behaviour.</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em><em>, </em><em>optional</em>) – any other named parameters are passed to the scorer. This can be used to pass
+e.g. weights to string_metric.levenshtein</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

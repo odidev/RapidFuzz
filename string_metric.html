@@ -223,14 +223,13 @@ checks all possible edit operations that are possible under
 the threshold <cite>max</cite>. The time complexity of this algorithm is <code class="docutils literal notranslate"><span class="pre">O(N)</span></code>.</p></li>
 <li><p>If the length of the shorter string is ≤ 64 after removing the common affix
 Hyyrös’ algorithm is used, which calculates the Levenshtein distance in
-parallel. The algorithm is described by <a class="footnote-reference brackets" href="#id7" id="id1">1</a>. The time complexity of this
+parallel. The algorithm is described by <a class="footnote-reference brackets" href="#id6" id="id1">1</a>. The time complexity of this
 algorithm is <code class="docutils literal notranslate"><span class="pre">O(N)</span></code>.</p></li>
-<li><p>In all other cases the Levenshtein distance is calculated using
-Wagner-Fischer with Ukkonens optimization as described by <a class="footnote-reference brackets" href="#id8" id="id2">2</a>.  The time
-complexity of this algorithm is <code class="docutils literal notranslate"><span class="pre">O(N</span> <span class="pre">*</span> <span class="pre">M)</span></code>.
-In the future this should be replaced by Myers algorithm (with blocks),
-which performs the calculation in parallel aswell (64 characters at a time).
-Myers algorithm is described in <a class="footnote-reference brackets" href="#id9" id="id3">3</a></p></li>
+<li><p>If the length of the shorter string is ≥ 64 after removing the common affix
+a blockwise implementation of Myers’ algorithm is used, which calculates
+the Levenshtein distance in parallel (64 characters at a time).
+The algorithm is described by <a class="footnote-reference brackets" href="#id8" id="id2">3</a>. The time complexity of this
+algorithm is <code class="docutils literal notranslate"><span class="pre">O([N/64]M)</span></code>.</p></li>
 </ul>
 </dd>
 <dt>Insertion = 1, Deletion = 1, Substitution &gt;= Insertion + Deletion:</dt><dd><p>when <code class="docutils literal notranslate"><span class="pre">Substitution</span> <span class="pre">&gt;=</span> <span class="pre">Insertion</span> <span class="pre">+</span> <span class="pre">Deletion</span></code> set
@@ -256,11 +255,11 @@ of substitutions decreases the amount of possible edit operations.
 The time complexity of this algorithm is <code class="docutils literal notranslate"><span class="pre">O(N)</span></code>.</p></li>
 <li><p>If the length of the shorter string is ≤ 64 after removing the common affix
 the BitPAl algorithm is used, which calculates the Levenshtein distance in
-parallel. The algorithm is described by <a class="footnote-reference brackets" href="#id10" id="id4">4</a> and is extended with support
+parallel. The algorithm is described by <a class="footnote-reference brackets" href="#id9" id="id3">4</a> and is extended with support
 for UTF32 in this implementation. The time complexity of this
 algorithm is <code class="docutils literal notranslate"><span class="pre">O(N)</span></code>.</p></li>
 <li><p>In all other cases the Levenshtein distance is calculated using
-Wagner-Fischer with Ukkonens optimization as described by <a class="footnote-reference brackets" href="#id8" id="id5">2</a>. The time
+Wagner-Fischer with Ukkonens optimization as described by <a class="footnote-reference brackets" href="#id7" id="id4">2</a>. The time
 complexity of this algorithm is <code class="docutils literal notranslate"><span class="pre">O(N</span> <span class="pre">*</span> <span class="pre">M)</span></code>.
 This can be replaced with a blockwise implementation of the BitPal algorithm
 in the future.</p></li>
@@ -268,27 +267,27 @@ in the future.</p></li>
 </dd>
 <dt>Other weights:</dt><dd><p>The implementation for other weights is based on Wagner-Fischer.
 It has a performance of <code class="docutils literal notranslate"><span class="pre">O(N</span> <span class="pre">*</span> <span class="pre">M)</span></code> and has a memory usage of <code class="docutils literal notranslate"><span class="pre">O(N)</span></code>.
-Further details can be found in <a class="footnote-reference brackets" href="#id8" id="id6">2</a>.</p>
+Further details can be found in <a class="footnote-reference brackets" href="#id7" id="id5">2</a>.</p>
 </dd>
 </dl>
 <p class="rubric">References</p>
 <dl class="footnote brackets">
-<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Hyyrö, Heikki. “A Bit-Vector Algorithm for Computing
 Levenshtein and Damerau Edit Distances.”
 Nordic Journal of Computing, Volume 10 (2003): 29-39.</p>
 </dd>
-<dt class="label" id="id8"><span class="brackets">2</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id5">2</a>,<a href="#id6">3</a>)</span></dt>
+<dt class="label" id="id7"><span class="brackets">2</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id5">2</a>)</span></dt>
 <dd><p>Wagner, Robert &amp; Fischer, Michael
 “The String-to-String Correction Problem.”
 J. ACM. 21. (1974): 168-173</p>
 </dd>
-<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id2">3</a></span></dt>
 <dd><p>Myers, Gene. “A fast bit-vector algorithm for approximate
 string matching based on dynamic programming.”
 Journal of the ACM (JACM) 46.3 (1999): 395-415.</p>
 </dd>
-<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id3">4</a></span></dt>
 <dd><p>Loving, Joshua &amp; Hernández, Yözen &amp; Benson, Gary.
 “BitPAl: A Bit-Parallel, General Integer-Scoring Sequence
 Alignment Algorithm. Bioinformatics”
@@ -309,8 +308,7 @@ a more efficient implementation:</p>
 </pre></div>
 </div>
 <p>It is possible to select different weights by passing a <cite>weight</cite>
-tuple. Internally s1 and s2 might be swapped, so insertion and deletion
-cost should usually have the same value.</p>
+tuple.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">levenshtein</span><span class="p">(</span><span class="s2">&quot;lewenstein&quot;</span><span class="p">,</span> <span class="s2">&quot;levenshtein&quot;</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 <span class="go">3</span>
 </pre></div>
@@ -322,60 +320,57 @@ cost should usually have the same value.</p>
 <h2>normalized_levenshtein<a class="headerlink" href="#normalized-levenshtein" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="rapidfuzz.string_metric.normalized_levenshtein">
-<code class="sig-prename descclassname"><span class="pre">rapidfuzz.string_metric.</span></code><code class="sig-name descname"><span class="pre">normalized_levenshtein</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.string_metric.normalized_levenshtein" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates a normalized levenshtein distance using custom
-costs for insertion, deletion and substitution. So far only the following
-weights are supported:
-- weights = (1, 1, N) with N &gt;= 1</p>
-<p>further combinations might be supported in the future</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>s1</strong> (<em>str</em>) – First string to compare.</p></li>
-<li><p><strong>s2</strong> (<em>str</em>) – Second string to compare.</p></li>
-<li><p><strong>weights</strong> (<em>Tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>, </em><em>int</em><em>] or </em><em>None</em><em>, </em><em>optional</em>) – The weights for the three operations in the form
-(insertion, deletion, substitution). Default is (1, 1, 1),
-which gives all three operations a weight of 1.</p></li>
-<li><p><strong>processor</strong> (<em>bool</em><em> or </em><em>callable</em><em>, </em><em>optional</em>) – Optional callable that is used to preprocess the strings before
-comparing them. When processor is True <code class="docutils literal notranslate"><span class="pre">utils.default_process</span></code>
-is used. Default is None, which deactivates this behaviour.</p></li>
-<li><p><strong>score_cutoff</strong> (<em>float</em><em>, </em><em>optional</em>) – Optional argument for a score threshold as a float between 0 and 100.
-For ratio &lt; score_cutoff 0 is returned instead. Default is 0,
-which deactivates this behaviour.</p></li>
-</ul>
+<code class="sig-prename descclassname"><span class="pre">rapidfuzz.string_metric.</span></code><code class="sig-name descname"><span class="pre">normalized_levenshtein</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.string_metric.normalized_levenshtein" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Calculates a normalized levenshtein distance using custom
+costs for insertion, deletion and substitution.</p>
+<dl class="simple">
+<dt>s1<span class="classifier">str</span></dt><dd><p>First string to compare.</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>ratio</strong> – Normalized weighted levenshtein distance between s1 and s2
+<dt>s2<span class="classifier">str</span></dt><dd><p>Second string to compare.</p>
+</dd>
+<dt>weights<span class="classifier">Tuple[int, int, int] or None, optional</span></dt><dd><p>The weights for the three operations in the form
+(insertion, deletion, substitution). Default is (1, 1, 1),
+which gives all three operations a weight of 1.</p>
+</dd>
+<dt>processor: bool or callable, optional</dt><dd><p>Optional callable that is used to preprocess the strings before
+comparing them. When processor is True <code class="docutils literal notranslate"><span class="pre">utils.default_process</span></code>
+is used. Default is None, which deactivates this behaviour.</p>
+</dd>
+<dt>score_cutoff<span class="classifier">float, optional</span></dt><dd><p>Optional argument for a score threshold as a float between 0 and 100.
+For ratio &lt; score_cutoff 0 is returned instead. Default is 0,
+which deactivates this behaviour.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ratio<span class="classifier">float</span></dt><dd><p>Normalized weighted levenshtein distance between s1 and s2
 as a float between 0 and 100</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If unsupported weights are provided a ValueError is thrown</p>
-</dd>
 </dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#rapidfuzz.string_metric.levenshtein" title="rapidfuzz.string_metric.levenshtein"><code class="xref py py-obj docutils literal notranslate"><span class="pre">levenshtein</span></code></a></dt><dd><p>Levenshtein distance</p>
+<dt>ValueError</dt><dd><p>If unsupported weights are provided a ValueError is thrown</p>
 </dd>
 </dl>
-</div>
-<p class="rubric">Notes</p>
-<p>Depending on the provided weights the normalisation is performed in different
-ways:</p>
+<p>levenshtein : Levenshtein distance</p>
+<p>The normalization of the Levenshtein distance is performed in the following way:</p>
+<div class="math notranslate nohighlight">
+egin{align*}
+  dist_{max} &amp;= egin{cases}
+    min(len(s1), len(s2)) \cdot sub,       &amp;      ext{if } sub \leq ins + del \
+    len(s1) \cdot del + len(s2) \cdot ins, &amp;      ext{otherwise}
+  \end{cases}\[10pt]
+
+  dist_{max} &amp;= egin{cases}
+    dist_{max} + (len(s1) - len(s2)) \cdot del, &amp;         ext{if } len(s1) &gt; len(s2) \
+    dist_{max} + (len(s2) - len(s1)) \cdot ins, &amp;         ext{if } len(s1) &lt; len(s2) \
+    dist_{max},                                 &amp;         ext{if } len(s1) = len(s2)
+  \end{cases}\[10pt]
+
+  ratio &amp;= 100 \cdot</div></div></blockquote>
 <dl>
-<dt>Insertion = 1, Deletion = 1, Substitution = 1:</dt><dd><div class="math notranslate nohighlight">
-\[ratio = 100 \cdot \frac{distance(s1, s2)}{max(len(s1), len(s2))}\]</div>
-</dd>
-<dt>Insertion = 1, Deletion = 1, Substitution = 2:</dt><dd><div class="math notranslate nohighlight">
-\[ratio = 100 \cdot \frac{distance(s1, s2)}{len(s1) + len(s2)}\]</div>
-</dd>
-</dl>
-<p>Different weights are currently not supported, since the library has no algorithm
-for normalization yet.</p>
-<p class="rubric">Examples</p>
+<dt>rac{distance(s1, s2)}{dist_{max}}</dt><dd><blockquote>
+<div><p>end{align*}</p>
+</div></blockquote>
 <p>Find the normalized Levenshtein distance between two strings:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">rapidfuzz.string_metric</span> <span class="kn">import</span> <span class="n">normalized_levenshtein</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">normalized_levenshtein</span><span class="p">(</span><span class="s2">&quot;lewenstein&quot;</span><span class="p">,</span> <span class="s2">&quot;levenshtein&quot;</span><span class="p">)</span>
@@ -389,8 +384,7 @@ a more efficient implementation:</p>
 </pre></div>
 </div>
 <p>It is possible to select different weights by passing a <cite>weight</cite>
-tuple. Internally s1 and s2 might be swapped, so insertion and deletion
-cost should usually have the same value.</p>
+tuple.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">normalized_levenshtein</span><span class="p">(</span><span class="s2">&quot;lewenstein&quot;</span><span class="p">,</span> <span class="s2">&quot;levenshtein&quot;</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 <span class="go">85.71428571428571</span>
 </pre></div>
@@ -400,6 +394,8 @@ cost should usually have the same value.</p>
 <span class="go">81.81818181818181</span>
 </pre></div>
 </div>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -407,13 +403,17 @@ cost should usually have the same value.</p>
 <h2>hamming<a class="headerlink" href="#hamming" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="rapidfuzz.string_metric.hamming">
-<code class="sig-prename descclassname"><span class="pre">rapidfuzz.string_metric.</span></code><code class="sig-name descname"><span class="pre">hamming</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.string_metric.hamming" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">rapidfuzz.string_metric.</span></code><code class="sig-name descname"><span class="pre">hamming</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.string_metric.hamming" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the Hamming distance between two strings.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>s1</strong> (<em>str</em>) – First string to compare.</p></li>
 <li><p><strong>s2</strong> (<em>str</em>) – Second string to compare.</p></li>
+<li><p><strong>max</strong> (<em>int</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – Maximum Hamming distance between s1 and s2, that is
+considered as a result. If the distance is bigger than max,
+-1 is returned instead. Default is None, which deactivates
+this behaviour.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -430,7 +430,7 @@ cost should usually have the same value.</p>
 <h2>normalized_hamming<a class="headerlink" href="#normalized-hamming" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="rapidfuzz.string_metric.normalized_hamming">
-<code class="sig-prename descclassname"><span class="pre">rapidfuzz.string_metric.</span></code><code class="sig-name descname"><span class="pre">normalized_hamming</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.string_metric.normalized_hamming" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">rapidfuzz.string_metric.</span></code><code class="sig-name descname"><span class="pre">normalized_hamming</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.string_metric.normalized_hamming" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates a normalized hamming distance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
