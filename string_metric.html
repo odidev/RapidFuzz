@@ -321,56 +321,59 @@ tuple.</p>
 <dl class="py function">
 <dt id="rapidfuzz.string_metric.normalized_levenshtein">
 <code class="sig-prename descclassname"><span class="pre">rapidfuzz.string_metric.</span></code><code class="sig-name descname"><span class="pre">normalized_levenshtein</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rapidfuzz.string_metric.normalized_levenshtein" title="Permalink to this definition">¶</a></dt>
-<dd><blockquote>
-<div><p>Calculates a normalized levenshtein distance using custom
+<dd><p>Calculates a normalized levenshtein distance using custom
 costs for insertion, deletion and substitution.</p>
-<dl class="simple">
-<dt>s1<span class="classifier">str</span></dt><dd><p>First string to compare.</p>
-</dd>
-<dt>s2<span class="classifier">str</span></dt><dd><p>Second string to compare.</p>
-</dd>
-<dt>weights<span class="classifier">Tuple[int, int, int] or None, optional</span></dt><dd><p>The weights for the three operations in the form
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s1</strong> (<em>str</em>) – First string to compare.</p></li>
+<li><p><strong>s2</strong> (<em>str</em>) – Second string to compare.</p></li>
+<li><p><strong>weights</strong> (<em>Tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>, </em><em>int</em><em>] or </em><em>None</em><em>, </em><em>optional</em>) – The weights for the three operations in the form
 (insertion, deletion, substitution). Default is (1, 1, 1),
-which gives all three operations a weight of 1.</p>
-</dd>
-<dt>processor: bool or callable, optional</dt><dd><p>Optional callable that is used to preprocess the strings before
+which gives all three operations a weight of 1.</p></li>
+<li><p><strong>processor</strong> (<em>bool</em><em> or </em><em>callable</em><em>, </em><em>optional</em>) – Optional callable that is used to preprocess the strings before
 comparing them. When processor is True <code class="docutils literal notranslate"><span class="pre">utils.default_process</span></code>
-is used. Default is None, which deactivates this behaviour.</p>
-</dd>
-<dt>score_cutoff<span class="classifier">float, optional</span></dt><dd><p>Optional argument for a score threshold as a float between 0 and 100.
+is used. Default is None, which deactivates this behaviour.</p></li>
+<li><p><strong>score_cutoff</strong> (<em>float</em><em>, </em><em>optional</em>) – Optional argument for a score threshold as a float between 0 and 100.
 For ratio &lt; score_cutoff 0 is returned instead. Default is 0,
-which deactivates this behaviour.</p>
+which deactivates this behaviour.</p></li>
+</ul>
 </dd>
-</dl>
-<dl class="simple">
-<dt>ratio<span class="classifier">float</span></dt><dd><p>Normalized weighted levenshtein distance between s1 and s2
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ratio</strong> – Normalized weighted levenshtein distance between s1 and s2
 as a float between 0 and 100</p>
 </dd>
-</dl>
-<dl class="simple">
-<dt>ValueError</dt><dd><p>If unsupported weights are provided a ValueError is thrown</p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If unsupported weights are provided a ValueError is thrown</p>
 </dd>
 </dl>
-<p>levenshtein : Levenshtein distance</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#rapidfuzz.string_metric.levenshtein" title="rapidfuzz.string_metric.levenshtein"><code class="xref py py-obj docutils literal notranslate"><span class="pre">levenshtein</span></code></a></dt><dd><p>Levenshtein distance</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
 <p>The normalization of the Levenshtein distance is performed in the following way:</p>
 <div class="math notranslate nohighlight">
-egin{align*}
-  dist_{max} &amp;= egin{cases}
-    min(len(s1), len(s2)) \cdot sub,       &amp;      ext{if } sub \leq ins + del \
-    len(s1) \cdot del + len(s2) \cdot ins, &amp;      ext{otherwise}
-  \end{cases}\[10pt]
+\begin{align*}
+  dist_{max} &amp;= \begin{cases}
+    min(len(s1), len(s2)) \cdot sub,       &amp; \text{if } sub \leq ins + del \\
+    len(s1) \cdot del + len(s2) \cdot ins, &amp; \text{otherwise}
+  \end{cases}\\[10pt]
 
-  dist_{max} &amp;= egin{cases}
-    dist_{max} + (len(s1) - len(s2)) \cdot del, &amp;         ext{if } len(s1) &gt; len(s2) \
-    dist_{max} + (len(s2) - len(s1)) \cdot ins, &amp;         ext{if } len(s1) &lt; len(s2) \
-    dist_{max},                                 &amp;         ext{if } len(s1) = len(s2)
-  \end{cases}\[10pt]
+  dist_{max} &amp;= \begin{cases}
+    dist_{max} + (len(s1) - len(s2)) \cdot del, &amp; \text{if } len(s1) &gt; len(s2) \\
+    dist_{max} + (len(s2) - len(s1)) \cdot ins, &amp; \text{if } len(s1) &lt; len(s2) \\
+    dist_{max},                                 &amp; \text{if } len(s1) = len(s2)
+  \end{cases}\\[10pt]
 
-  ratio &amp;= 100 \cdot</div></div></blockquote>
-<dl>
-<dt>rac{distance(s1, s2)}{dist_{max}}</dt><dd><blockquote>
-<div><p>end{align*}</p>
-</div></blockquote>
+  ratio &amp;= 100 \cdot \frac{distance(s1, s2)}{dist_{max}}
+\end{align*}</div><p class="rubric">Examples</p>
 <p>Find the normalized Levenshtein distance between two strings:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">rapidfuzz.string_metric</span> <span class="kn">import</span> <span class="n">normalized_levenshtein</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">normalized_levenshtein</span><span class="p">(</span><span class="s2">&quot;lewenstein&quot;</span><span class="p">,</span> <span class="s2">&quot;levenshtein&quot;</span><span class="p">)</span>
@@ -394,8 +397,6 @@ tuple.</p>
 <span class="go">81.81818181818181</span>
 </pre></div>
 </div>
-</dd>
-</dl>
 </dd></dl>
 
 </div>
