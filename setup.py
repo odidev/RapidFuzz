@@ -17,7 +17,7 @@ class BuildExt(build_ext):
     """A custom build extension for adding compiler-specific options."""
     c_opts = {
         'msvc': ['/EHsc', '/O2', '/std:c++11'],
-        'unix': ['-O3', '-std=c++11', '-Wextra', '-Wall',  '-mtune=generic', '-fasynchronous-unwind-tables', '-m64'
+        'unix': ['-O3', '-std=c++11', '-Wextra', '-Wall',  '-mtune=generic', '-fasynchronous-unwind-tables', '-m64',
          "-DDYNAMIC_ANNOTATIONS_ENABLED=1", "-fexceptions", "-grecord-gcc-switches", "-pipe", "-Werror=format-security", "-Wp,-D_FORTIFY_SOURCE=2",
          "-D_GNU_SOURCE", "-fwrapv", "-Wp,-D_GLIBCXX_ASSERTIONS", "-fstack-protector-strong", "-fstack-clash-protection", "-fcf-protection"],
     }
